@@ -9,7 +9,7 @@
 import csv
 
 results = open("result.txt", "w+")
-
+results.truncate(0)
 
 # ### Function that takes a sentence as a parameter and return the class in which it falls into
 
