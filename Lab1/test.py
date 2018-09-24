@@ -1,6 +1,8 @@
 
 # coding: utf-8
 
+# ### Importing and opening the necessary files needed
+
 # In[10]:
 
 
@@ -9,10 +11,14 @@ import csv
 results = open("result.txt", "w+")
 
 
+# ### Function that takes a sentence as a parameter and return the class in which it falls into
+
 # In[4]:
 
 
 def test(sentence):
+    
+    #opening the various text files and storing the data in lists
     with open('vocabulary.txt') as v:
         vocabulary = v.readlines()
         vocabulary = [x.strip('\n') for x in vocabulary]
@@ -37,16 +43,25 @@ def test(sentence):
         negative_words = nw.readlines()
         negative_words = [x.strip('\n') for x in negative_words]
 
+    #Getting the total number of documents
     number_of_documents = len(documents)
-
+    
+    #Getting the number of positive documents
     number_of_all_pdocs = len(positive_documents)
+    
+    #Getting the number of negative documents
     number_of_all_ndocs = len(negative_documents)
 
+    #Calculating the log prior for the positive class
     positive_logprior = number_of_all_pdocs / number_of_documents
+    
+    #Calculating the log prior for the negative class
     negative_logprior = number_of_all_ndocs / number_of_documents
 
+    #dictionary to store the data that would be retrieved from a csv
     trained_data = dict()
 
+    #reading data in from a csv and wrting them into the trained_data dictionary
     with open('Word_Likelihood.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         line_count = 0
@@ -88,6 +103,7 @@ def test(sentence):
             prob = (1 / (len(negative_words) + len(trained_data))) * negative_logprior
             ndoc_probability += prob
 
+
     if pdoc_probability > ndoc_probability:
         return 1
     else:
@@ -95,10 +111,13 @@ def test(sentence):
         
 
 
+# ### Determining the class of text that would be passed in from a text file and ouputing it into a results file.
+
 # In[5]:
 
 
 def main(text_file):
+    
     with open(text_file) as t:
         file = t.readlines()
         file = [
@@ -111,4 +130,16 @@ def main(text_file):
     for doc in file:
         result = test(str(doc))
         results.write(str(result) + '\n')
+    
 
+
+# In[ ]:
+
+
+def run():
+    text_file=input('Please enter the filename with the (.txt) extension: ')
+    print('This might take about 2 minutes')
+    main(str(text_file))
+    print('Process completed check the results.txt file')
+
+run()

@@ -7,6 +7,8 @@
 import csv
 
 
+# ### Reading various data from text files
+
 # In[2]:
 
 
@@ -61,6 +63,8 @@ with open('negative_words.txt') as nw:
 word_likelihood = dict()
 
 
+# ### Writing all the data of the words , their positive & negative likelihoods along with their count to a dictionary
+
 # In[9]:
 
 
@@ -81,6 +85,8 @@ for word in vocabulary:
     else:
         word_likelihood[word]['count'] += 1
 
+
+# ### Writing the data stored in the word_likelihood dicitonary to the csv file
 
 # In[10]:
 
