@@ -27,6 +27,6 @@ def run():
     sourceString = input('Enter source string: ')
     targetString = input('Enter target string: ')
     med = minEditDistance(str(sourceString), str(targetString))
-    print('The min edit distance between' + sourceString + ' and ' + targetString + ' is ' + med)
+    print('The min edit distance between' + str(sourceString) + ' and ' + str(targetString) + ' is ' + str(med))
 
 run()
