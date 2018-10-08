@@ -12,5 +12,3 @@ def mEditDistance(sourceString, targetString):
                            mEditDistance(sourceString, targetString[:-1])+1,
                            mEditDistance(sourceString[:-1], targetString[:-1]) + cost])
     return minEditDistance
-
-print(mEditDistance("Mannhaton", "Manhattan"))

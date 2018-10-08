@@ -5,12 +5,8 @@ def iterative_levenshtein(sourceString, targetString):
     rows = len(sourceString)+1
     cols = len(targetString)+1
     dist = np.zeros((rows+1,cols+1))
-    # source prefixes can be transformed into empty strings
-    # by deletions:
     for i in range(1, rows):
         dist[i][0] = i
-    # target prefixes can be created from an empty source string
-    # by inserting the characters
     for i in range(1, cols):
         dist[0][i] = i
 
@@ -27,5 +23,4 @@ def iterative_levenshtein(sourceString, targetString):
 
 
     return dist[row][col]
-print(iterative_levenshtein("flaw", "lawn"))
 
