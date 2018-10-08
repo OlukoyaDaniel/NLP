@@ -15,7 +15,7 @@ def minEditDistance(sourceString, targetString):
             if sourceString[row - 1] == targetString[col - 1]:
                 cost = 0
             else:
-                cost = 1
+                cost = 2
             dist[row][col] = min(dist[row - 1][col] + 1,  # deletion
                                  dist[row][col - 1] + 1,  # insertion
                                  dist[row - 1][col - 1] + cost)  # substitution
@@ -27,6 +27,6 @@ def run():
     sourceString = input('Enter source string: ')
     targetString = input('Enter target string: ')
     med = minEditDistance(str(sourceString), str(targetString))
-    print('The min edit distance between' + str(sourceString) + ' and ' + str(targetString) + ' is ' + str(med))
+    print('The min edit distance between "' + str(sourceString) + '" and "' + str(targetString) + '" is ' + str(med))
 
 run()
